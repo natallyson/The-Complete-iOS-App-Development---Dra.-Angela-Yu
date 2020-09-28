@@ -1,13 +1,10 @@
-////Don't change this
-var aNumber =  Int(readLine()!)!
-
-func dayOfTheWeek(day: Int) {
-  
-  //Write your code inside this function.
-  
-  
-  
+func isOdd(n: Int) -> Bool{
+    if (n % 2 == 0){
+        return true
+    } else {
+        return false
+    }
 }
 
-//Don't change this
-dayOfTheWeek(day: aNumber)
+var number = isOdd(n: 3)
+print("\(number)")
