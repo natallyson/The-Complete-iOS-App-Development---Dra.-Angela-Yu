@@ -17,3 +17,4 @@ class Enemy {
         print("Land a hit, does \(attackStrength) damage.")
     }
 }
+//
