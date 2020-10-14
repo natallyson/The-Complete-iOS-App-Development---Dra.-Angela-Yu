@@ -18,18 +18,18 @@ class CalculatorViewController: UIViewController {
     
     var tip = 0.10
     var numberOfPeople = 2
-    var billCalculator = 0.0
+    var billTotal = 0.0
     
     @IBAction func tipChanged(_ sender: UIButton) {
         
-        self.billTextField.keyboardType = .decimalPad
-        
+        // Dispensa o teclado quando o usuário escolhe um dos valores de ponta.
         billTextField.endEditing(true)
+       
         //Desmarque todos os botões de dica via IBOutlets.
         zeroPctButton.isSelected = false
         tenPctButton.isSelected = false
         twentyPctButton.isSelected = false
-        
+       
         //Faça com que o botão que acionou a IBAction seja selecionado.
         sender.isSelected = true
         
@@ -48,20 +48,29 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
+       
         //Obtenha o valor do passo usando sender.value, arredonde-o para um número inteiro e defina-o como o String em splitNumberLabel
         splitNumberLabel.text = String(format: "%.0f", sender.value)
+    
         // Defina a propriedade numberOfPeople como o valor do stepper como um número inteiro.
         numberOfPeople = Int(sender.value)
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        let billValue = Double(billTextField.text!)
+        // Pega o texto que o usuário digitou no billTextField
+        let bill = billTextField.text!
         
-        billCalculator = ((billValue! * tip) + billValue!) / Double(numberOfPeople)
-        
-        let billResult = String(format: "%.2f", billCalculator)
-        
-        print(billResult)
+        // Se o texto não for uma String vazia ""
+        if bill != "" {
+        // Transforme a nota de uma String, por exemplo "123,50" para uma string real com casas decimais.
+            billTotal = Double(bill)!
+            
+            // Multiplique a conta pela porcentagem da gorjeta e divida pelo número de pessoas para dividir a conta.
+            let result = billTotal * (1 + tip) / Double(numberOfPeople)
+            
+            // Arredonde o resultado para 2 casas decimais e transforme-o em uma String.
+            let resultTo2DecimalPlaces = String(format: "%.2f", result)
+            print(resultTo2DecimalPlaces)
+        }
     }
-    
 }
