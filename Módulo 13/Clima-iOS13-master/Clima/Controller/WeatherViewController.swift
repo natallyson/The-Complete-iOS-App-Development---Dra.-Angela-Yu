@@ -8,18 +8,21 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
-
+class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+    
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     
-    
     var weatherManager = WeatherManager()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //define a classe como delegate
+        weatherManager.delegate = self
+        
         //Envia informações do campo searchTextField para o UITextFieldDelegate
         searchTextField.delegate = self
     }
@@ -47,6 +50,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
             weatherManager.fethWeather(cityName: city)
         }
         searchTextField.text = ""
+    }
+    //atualiza o clima
+    func didUpdateWeather(weather: WeatherModel) {
+        print(weather.temperature)
     }
 }
 
