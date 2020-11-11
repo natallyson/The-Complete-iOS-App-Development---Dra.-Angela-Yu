@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+//Struct para decodificar o JSON.
+//Transformar um objeto Swift em JSON.
+struct CoinData: Decodable {
+    
+    //Damos a ele um tipo de dado Double, ao preço do bitcoin.
+    let rate: Double
+}
