@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -14,6 +15,18 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextfield: UITextField!
     
     @IBAction func registerPressed(_ sender: UIButton) {
+        //recebe o email e senha dos campos da tela do app
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let e = error {
+                //localizacao do erro na linguagem/idioma do iPhone
+                print(e.localizedDescription)
+            } else {
+                //Após registrar com sucesso, navega ate o ChatViewController
+                self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+            }
+        }
     }
     
+}
 }
