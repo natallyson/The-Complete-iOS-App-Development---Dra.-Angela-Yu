@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
@@ -34,14 +34,14 @@ class ChatViewController: UIViewController {
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
         
-    do {
-      try Auth.auth().signOut()
-        navigationController?.popToRootViewController(animated: true)
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         
-    } catch let signOutError as NSError {
-      print ("Error signing out: %@", signOutError)
-    }
-      
     }
     
 }
