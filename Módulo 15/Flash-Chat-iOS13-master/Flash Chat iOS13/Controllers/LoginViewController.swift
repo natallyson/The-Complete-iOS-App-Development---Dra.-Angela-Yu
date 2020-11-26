@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
                 print(e.localizedDescription)
             } else {
                 //Após registrar com sucesso, navega ate o ChatViewController
-                self.performSegue(withIdentifier: "LoginToChat", sender: self)
+                self.performSegue(withIdentifier: K.loginSegue, sender: self)
         }
     }
     
