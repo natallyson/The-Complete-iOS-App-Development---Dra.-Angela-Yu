@@ -18,7 +18,7 @@ class MessageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         //definindo o tamanho do balão e as bordas borbulhantes
-        messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 5
+        messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 4
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
