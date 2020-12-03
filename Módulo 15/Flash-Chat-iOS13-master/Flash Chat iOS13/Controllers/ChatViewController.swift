@@ -50,6 +50,9 @@ class ChatViewController: UIViewController {
                                 
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
+                                    //exibe a ultima mensagem enviada no topo da tela com animação
+                                    let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                                 }
                             }
                         }
