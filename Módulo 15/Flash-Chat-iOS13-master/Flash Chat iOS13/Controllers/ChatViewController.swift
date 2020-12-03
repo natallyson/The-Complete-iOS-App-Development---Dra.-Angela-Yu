@@ -89,16 +89,27 @@ class ChatViewController: UIViewController {
 }
 
 extension ChatViewController: UITableViewDataSource {
-    
+    //cria o numero de celulas que corresponde ao numero de mensagens
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
-    //Metodo fonte de dados
+    
+    //Metodo fonte de dados, chama este metodo para descobrir o que precisa ser exibido na tela.
     func tableView(_ tableView: UITableView, cellForRowAt indexPatch: IndexPath) -> UITableViewCell {
+        //verifica se o remetente da mensagem que esta entrando na celula é o mesmo que está conectado
+        let message = messages[indexPatch.row]
+        
+        //se o usuario da mensagem nao for o mesmo que o usuario atual, conectado.
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPatch)
             // as! - palavra chave para converter a celula reutilizavel para celula da mensagem
             as! MessageCell
         cell.label.text = messages[indexPatch.row].body
+        
+        //Mensagem do usuario atual
+        if message.sender == Auth.auth().currentUser?.email {
+            
+        }
+        
         return cell
     }
 }
